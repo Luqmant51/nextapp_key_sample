@@ -16,7 +16,7 @@ const LandingPage = () => {
                     <Typography variant="h5" component="h1">
                         Well come
                     </Typography>
-                    <Link href="/sample/index" passHref>
+                    <Link href="/(protected)/sample/welcome" passHref>
                         <Button variant="contained">
                             Go to Dashboard
                         </Button>
