@@ -4,6 +4,7 @@ import { Button } from '@mui/material';
 async function keyCloakLogout() {
     try {
         await fetch("/api/auth/logout", { method: "GET" })
+        console.log("function call");
     } catch (error) {
         console.log(error)
     }

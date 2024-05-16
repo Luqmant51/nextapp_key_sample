@@ -26,6 +26,7 @@ interface AuthProviderProps {
   fetchStart: () => void;
   fetchSuccess: () => void;
   fetchError: (error: string) => void;
+  session: any
 }
 
 const AuthProvider: React.FC<AuthProviderProps> = ({
@@ -33,6 +34,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({
   fetchStart,
   fetchSuccess,
   fetchError,
+  session
 }) => {
   const [authData, setAuthData] = useState<AuthContextProps>({
     user: null,
@@ -41,21 +43,13 @@ const AuthProvider: React.FC<AuthProviderProps> = ({
   });
 
   useEffect(() => {
-    console.log("AuthProvider in use effect");
-  
+
     const fetchSession = async () => {
-      console.log("fetchSession in use effect");
       fetchStart();
       try {
-        const response = await fetch('/api/session');
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            const session = await response.json();
-  
-        if (session?.user) {
-          console.log("in if");
-  
+
+        if (session && session?.user) {
+
           setAuthData({
             user: session.user,
             isAuthenticated: true,
@@ -72,10 +66,10 @@ const AuthProvider: React.FC<AuthProviderProps> = ({
         });
       }
     };
-  
+
     fetchSession();
-  }, []);
-  
+  }, [session]);
+
 
   return (
     <AuthContext.Provider value={authData}>

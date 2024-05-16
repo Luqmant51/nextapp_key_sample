@@ -1,6 +1,6 @@
-import LandingPage from "@/modules/landingpage";
+import LandingPage from "@/app/landingpage";
 
 
-export default async function Home() {
+export default function Home() {
   return <LandingPage />
 }
