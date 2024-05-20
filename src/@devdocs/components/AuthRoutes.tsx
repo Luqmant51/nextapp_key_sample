@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import AppLoader from './AppLoader';
 import { useAuthUserKeyCloak } from '@/@devdocs/hooks/AuthHooks';
-import { useRouter } from 'next/navigation';
+import PrimaryAppBar from './Layout/Applayout';
 
 type AuthRoutesProps = {
   children: ReactNode;
@@ -9,10 +9,10 @@ type AuthRoutesProps = {
 
 const AuthRoutes: React.FC<AuthRoutesProps> = ({ children }) => {
   const { isLoading, isAuthenticated } = useAuthUserKeyCloak();
-  const router = useRouter()
-  console.log();
-
-  return isLoading ? <h2>Loading ...</h2> : <>{children}</>;
+  return isLoading ? <AppLoader /> : <>
+    {isAuthenticated && <PrimaryAppBar />}
+    {children}
+  </>;
 };
 
 export default AuthRoutes;

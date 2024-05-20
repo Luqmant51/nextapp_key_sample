@@ -68,6 +68,7 @@ export interface Document {
 export interface UserGroup {
     user_id: string;
     group_id: string;
+    workspace_id: string;
 }
 
 export interface ACL {
