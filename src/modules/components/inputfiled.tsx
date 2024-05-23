@@ -32,6 +32,7 @@ interface InputProps {
     disabled?: boolean;
     defaultValue?: string;
     InputProps?: any;
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const NewTextField: React.FC<InputProps> = ({ label = "Text Field", variant = 'outlined', ...props }) => {

@@ -68,7 +68,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({
     };
 
     fetchSession();
-  }, [session]);
+  }, [session, fetchError, fetchStart, fetchSuccess]);
 
 
   return (

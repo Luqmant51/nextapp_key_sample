@@ -9,23 +9,23 @@ import { faker } from '@faker-js/faker';
 
 
 // Give single MockData
-const userName = `${faker.name.firstName()} ${faker.name.lastName()}`;
-const mockWorkspace = createMockWorkspace(userName);
+const userName = `${faker.person.firstName()} ${faker.person.lastName()}`;
+const mockWorkspace = createMockWorkspace(userName, true);
 const mockRole = createMockRole();
 const mockGroup = createMockGroup(mockWorkspace.id);
 const mockUser = createMockUser();
-const mockDocument = createMockDocument(mockWorkspace.id);
-const mockUserGroup = createMockUserGroup(mockUser.id, mockGroup.id);
+const mockDocument = createMockDocument(mockWorkspace.id, '123');
+const mockUserGroup = createMockUserGroup(mockUser!.id, mockGroup.id, mockWorkspace.id);
 const mockACL = createMockACL(mockWorkspace.id, mockRole.id, mockGroup.id);
 
 
 // Give Number of Mockdata
-const mockWorkspaces = createMockWorkspaces(5, userName);
+const mockWorkspaces = createMockWorkspaces(5, userName, true);
 const mockRoles = createMockRoles(5);
 const mockGroups = createMockGroups(5, mockWorkspaces[0].id);
 const mockUsers = createMockUsers(5);
-const mockDocuments = createMockDocuments(5, mockWorkspaces[0].id);
-const mockUserGroups = createMockUserGroups(5, mockUsers[0].id, mockGroups[0].id);
+const mockDocuments = createMockDocuments(5, mockWorkspaces[0].id, '123');
+const mockUserGroups = createMockUserGroups(5, mockUsers[0].id, mockGroups[0].id, mockWorkspace.id);
 const mockACLs = createMockACLs(5, mockWorkspaces[0].id, mockRoles[0].id, mockGroups[0].id);
 
 
