@@ -1,4 +1,4 @@
-"use client"
+'use client';
 import React, {
   createContext,
   ReactNode,
@@ -58,7 +58,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({
           fetchSuccess();
         }
       } catch (error) {
-        fetchError("Failed to initialize authentication: " + error);
+        fetchError('Failed to initialize authentication: ' + error);
         setAuthData({
           user: null,
           isAuthenticated: false,

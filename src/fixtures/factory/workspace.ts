@@ -8,18 +8,19 @@ const generateWorkspaceName = (userName: string, isPublic: boolean): string => {
 export const createMockWorkspace = (
   userName: string,
   isPublic: boolean,
+  userId: string,
   overwrites: Partial<WorkspaceType> = {}
 ): WorkspaceType => {
   return {
     id: faker.string.uuid(),
     workspace_name: generateWorkspaceName(userName, isPublic),
     is_public: isPublic,
-    created_by: faker.string.uuid(),
+    created_by: userId,
     created_on_utc: faker.date.past().toISOString(),
     ...overwrites,
   };
 };
 
-export const createMockWorkspaces = (numberOfWorkspaces: number, userName: string, isPublic: boolean): WorkspaceType[] => {
-  return Array.from({ length: numberOfWorkspaces }).map(() => createMockWorkspace(userName, isPublic));
+export const createMockWorkspaces = (numberOfWorkspaces: number, userName: string, userId: string, isPublic: boolean): WorkspaceType[] => {
+  return Array.from({ length: numberOfWorkspaces }).map(() => createMockWorkspace(userName, isPublic, userId));
 };

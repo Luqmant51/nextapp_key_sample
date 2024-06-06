@@ -1,4 +1,4 @@
-import { useAuthKeycloak } from "@/@devdocs/services/auth/keycloack/KeycloakAuthProvider";
+import { useAuthKeycloak } from '@/@devdocs/services/auth/keycloack/KeycloakAuthProvider';
 
 export const useAuthUserKeyCloak = () => {
   const { user, isAuthenticated, isLoading } = useAuthKeycloak();

@@ -2,7 +2,7 @@ import React from 'react';
 import WorkSpace from '@/modules/workspace';
 
 function Page() {
-    return <WorkSpace />;
-};
+  return <WorkSpace />;
+}
 
 export default Page;

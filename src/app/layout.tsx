@@ -1,13 +1,13 @@
 'use client';
 import React from 'react';
-import { Inter } from "next/font/google";
-import "./globals.css";
-import InfoViewContextProvider from "@devdocs/context/AppContextProvider/InfoViewContextProvider";
-import AppAuthProvider from "@devdocs/core/AppAuthProvider";
-import AuthRoutes from "@devdocs/components/AuthRoutes";
-import SessionProviderWrapper from "@/utils/sessionProviderWrapper";
+import { Inter } from 'next/font/google';
+import './globals.css';
+import InfoViewContextProvider from '@devdocs/context/AppContextProvider/InfoViewContextProvider';
+import AppAuthProvider from '@devdocs/core/AppAuthProvider';
+import AuthRoutes from '@devdocs/components/AuthRoutes';
+import { SessionProvider } from 'next-auth/react';
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] });
 
 type Props = {
   children: React.ReactNode;
@@ -15,7 +15,7 @@ type Props = {
 
 const RootLayout: React.FC<Props> = ({ children }) => {
   return (
-    <SessionProviderWrapper>
+    <SessionProvider>
       <html lang="en">
         <body className={inter.className}>
           <InfoViewContextProvider>
@@ -27,7 +27,7 @@ const RootLayout: React.FC<Props> = ({ children }) => {
           </InfoViewContextProvider>
         </body>
       </html>
-    </SessionProviderWrapper>
+    </SessionProvider>
   );
 };
 

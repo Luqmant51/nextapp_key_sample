@@ -6,7 +6,7 @@ import React, {
   useContext,
   useReducer,
 } from 'react';
-import { contextReducer, InFoViewActions } from './InfoViewReducer';
+import { contextReducer, InfoViewActions } from './InfoViewReducer';
 
 export type InfoViewData = {
   error: string;
@@ -14,7 +14,7 @@ export type InfoViewData = {
   loading: boolean;
 };
 
-export type InfoViewActions = {
+export type InfoViewActionsType = {
   fetchStart: () => void;
   fetchSuccess: () => void;
   fetchError: (error: string) => void;
@@ -29,7 +29,7 @@ export const ContextState: InfoViewData = {
 };
 
 const InfoViewContext = createContext<InfoViewData>(ContextState);
-const InfoViewActionsContext = createContext<InfoViewActions>({
+const InfoViewActionsContext = createContext<InfoViewActionsType>({
   fetchStart: () => {},
   fetchSuccess: () => {},
   fetchError: (error: string) => {},
@@ -44,34 +44,29 @@ export const useInfoViewActionsContext = () =>
 type InfoViewContextProviderProps = {
   children: ReactNode;
 };
-const InfoViewContextProvider: React.FC<InfoViewContextProviderProps> = (
-  props,
-) => {
-  const [state, dispatch] = useReducer(
-    contextReducer,
-    ContextState,
-    () => ContextState,
-  );
+
+const InfoViewContextProvider: React.FC<InfoViewContextProviderProps> = ({ children }) => {
+  const [state, dispatch] = useReducer(contextReducer, ContextState);
 
   const fetchStart = useCallback(() => {
-    dispatch({ type: InFoViewActions.FETCH_STARTS });
+    dispatch({ type: InfoViewActions.FETCH_STARTS });
   }, []);
 
   const fetchSuccess = useCallback(() => {
-    dispatch({ type: InFoViewActions.FETCH_SUCCESS });
+    dispatch({ type: InfoViewActions.FETCH_SUCCESS });
   }, []);
 
   const fetchError = useCallback((error: string) => {
-    dispatch({ type: InFoViewActions.SET_ERROR, payload: error });
+    dispatch({ type: InfoViewActions.SET_ERROR, payload: error });
   }, []);
 
-  const showMessage = (message: string) => {
-    dispatch({ type: InFoViewActions.SET_MESSAGE, payload: message });
-  };
+  const showMessage = useCallback((message: string) => {
+    dispatch({ type: InfoViewActions.SET_MESSAGE, payload: message });
+  }, []);
 
-  const clearInfoView = () => {
-    dispatch({ type: InFoViewActions.CLEAR_INFOVIEW });
-  };
+  const clearInfoView = useCallback(() => {
+    dispatch({ type: InfoViewActions.CLEAR_INFOVIEW });
+  }, []);
 
   return (
     <InfoViewContext.Provider value={state}>
@@ -84,7 +79,7 @@ const InfoViewContextProvider: React.FC<InfoViewContextProviderProps> = (
           clearInfoView,
         }}
       >
-        {props.children}
+        {children}
       </InfoViewActionsContext.Provider>
     </InfoViewContext.Provider>
   );

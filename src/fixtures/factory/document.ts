@@ -33,13 +33,16 @@ export const createMockDocument = (
     content = generateContent();
   } while (!content);
 
+  const createdAt = faker.date.recent();
+  const updatedAt = faker.date.soon(1, createdAt);
+
   return {
     document_id: faker.string.uuid(),
     document_name: faker.lorem.sentence(),
     workspace_id: workspaceId,
     user_id: userId,
-    created_at: faker.date.recent(),
-    updated_at: faker.date.recent(),
+    created_at: createdAt,
+    updated_at: updatedAt,
     content,
     ...overwrites,
   };
@@ -48,7 +51,8 @@ export const createMockDocument = (
 export const createMockDocuments = (
   numberOfDocuments: number,
   workspaceId: string,
-  userId: string
+  userId: string,
+  overwrites: Partial<DocumentType> = {}
 ): DocumentType[] => {
-  return Array.from({ length: numberOfDocuments }, () => createMockDocument(workspaceId, userId));
+  return Array.from({ length: numberOfDocuments }, () => createMockDocument(workspaceId, userId, overwrites));
 };

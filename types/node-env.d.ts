@@ -11,7 +11,7 @@ declare namespace NodeJS {
 declare module 'next-auth/jwt' {
     interface JWT {
         decoded?: {
-            sid?: string
+            sub?: string
             realm_access?: {
                 roles: string[];
             };

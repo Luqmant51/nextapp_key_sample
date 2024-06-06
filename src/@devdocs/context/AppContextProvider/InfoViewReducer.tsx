@@ -1,6 +1,6 @@
 import { InfoViewData } from './InfoViewContextProvider';
 
-export const InFoViewActions = {
+export const InfoViewActions = {
   FETCH_STARTS: 'FETCH_STARTS',
   FETCH_SUCCESS: 'FETCH_SUCCESS',
   SET_MESSAGE: 'SET_MESSAGE',
@@ -10,47 +10,47 @@ export const InFoViewActions = {
 
 export function contextReducer(state: InfoViewData, action: any) {
   switch (action.type) {
-    case InFoViewActions.FETCH_STARTS: {
-      return {
-        ...state,
-        loading: true,
-        message: '',
-        error: '',
-      };
-    }
-    case InFoViewActions.FETCH_SUCCESS: {
-      return {
-        ...state,
-        loading: false,
-        message: '',
-        error: '',
-      };
-    }
-    case InFoViewActions.SET_MESSAGE: {
-      return {
-        ...state,
-        loading: false,
-        message: action.payload,
-        error: '',
-      };
-    }
-    case InFoViewActions.SET_ERROR: {
-      return {
-        ...state,
-        loading: false,
-        message: '',
-        error: action.payload,
-      };
-    }
-    case InFoViewActions.CLEAR_INFOVIEW: {
-      return {
-        ...state,
-        loading: false,
-        message: '',
-        error: '',
-      };
-    }
-    default:
-      return state;
+  case InfoViewActions.FETCH_STARTS: {
+    return {
+      ...state,
+      loading: true,
+      message: '',
+      error: '',
+    };
+  }
+  case InfoViewActions.FETCH_SUCCESS: {
+    return {
+      ...state,
+      loading: false,
+      message: '',
+      error: '',
+    };
+  }
+  case InfoViewActions.SET_MESSAGE: {
+    return {
+      ...state,
+      loading: false,
+      message: action.payload,
+      error: '',
+    };
+  }
+  case InfoViewActions.SET_ERROR: {
+    return {
+      ...state,
+      loading: false,
+      message: '',
+      error: action.payload,
+    };
+  }
+  case InfoViewActions.CLEAR_INFOVIEW: {
+    return {
+      ...state,
+      loading: false,
+      message: '',
+      error: '',
+    };
+  }
+  default:
+    return state;
   }
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import './css/button.css';
 import { Button as MuiButton } from '@mui/material';
+import { SxProps, Theme } from '@mui/system';
 
 interface ButtonProps {
     variant: 'text' | 'outlined' | 'contained';
@@ -8,13 +9,14 @@ interface ButtonProps {
     size: 'small' | 'medium' | 'large';
     label: string;
     disabled?: boolean;
-    onClick?: () => void;
+    sx?: SxProps<Theme>;
+    onClick?: (...agrs: any) => any;
 }
 
 export const DevButton: React.FC<ButtonProps> = ({ variant = 'contained', color = 'primary', size = 'medium', label, onClick, ...props }) => {
-    return (
-        <MuiButton style={{ margin: "10px" }} variant={variant} color={color} size={size} onClick={onClick} {...props}>
-            {label}
-        </MuiButton>
-    );
+  return (
+    <MuiButton style={{ minWidth: '150px', margin:'5px' }} variant={variant} color={color} size={size} onClick={onClick} {...props}>
+      {label}
+    </MuiButton>
+  );
 };

@@ -8,16 +8,16 @@ interface DefaultLayoutProps {
 }
 
 const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }) => {
-    return (
-        <Container maxWidth="lg">
-            <Box sx={{ my: 4 }}>
-                <Typography variant="h4" component="h1" gutterBottom>
+  return (
+    <Container maxWidth="lg">
+      <Box sx={{ my: 4 }}>
+        <Typography variant="h4" component="h1" gutterBottom>
                     My App Header
-                </Typography>
-                {children}
-            </Box>
-        </Container>
-    );
+        </Typography>
+        {children}
+      </Box>
+    </Container>
+  );
 };
 
 export default DefaultLayout;

@@ -2,7 +2,7 @@ import React from 'react';
 import Welcome from '@/modules/welcome/index';
 
 function Page() {
-    return <Welcome />;
-};
+  return <Welcome />;
+}
 
 export default Page;
